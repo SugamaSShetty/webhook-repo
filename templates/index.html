@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webhook Events</title>
+  <script>
+    async function fetchEvents() {
+      const res = await fetch('/events');
+      const data = await res.json();
+      document.getElementById("events").innerHTML = data.map(msg => `<li>${msg}</li>`).join('');
+    }
+    setInterval(fetchEvents, 15000);
+    window.onload = fetchEvents;
+  </script>
+</head>
+<body>
+  <h2>GitHub Webhook Events</h2>
+  <ul id="events"></ul>
+</body>
+</html>
